@@ -1,0 +1,105 @@
+# swagger.yaml
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: API documentation for a sample application.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /todos:
+    get:
+      summary: Get all todos
+      description: Retrieve a list of all todo items.
+      responses:
+        '200':
+          description: A JSON array of todo items.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todos'
+        '500':
+          description: Internal server error
+
+    post:
+      summary: Create a new todo
+      description: Create a new todo item.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Todos'
+      responses:
+        '200':
+          description: The created todo item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todos'
+        '500':
+          description: Internal server error
+
+  /todos/{id}:
+    put:
+      summary: Update a todo by ID
+      description: Update an existing todo item by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the todo to update.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoInput'
+      responses:
+        '200':
+          description: The updated todo item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todos'
+        '404':
+          description: Todo not found
+        '500':
+          description: Internal server error
+
+    delete:
+      summary: Delete a todo by ID
+      description: Delete a todo item by its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the todo to delete.
+      responses:
+        '200':
+          description: The deleted todo item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todos'
+        '404':
+          description: Todo not found
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Todos:
+      type: object
+      properties:
+        task:
+          type: string
+        updateDate:
+          type: string
+          format: date-time
