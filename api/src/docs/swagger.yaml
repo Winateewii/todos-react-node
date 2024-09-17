@@ -100,6 +100,6 @@ components:
       properties:
         task:
           type: string
-        updateDate:
-          type: string
-          format: date-time
+        isDone:
+          type: boolean
+
