@@ -12,7 +12,7 @@ const getTasksService = async () => {
     }
 }
 
-const addTaskService = async (task) => {
+const addTaskService = async (task: any) => {
     try {
         const response = await axios.post(API_URL, { task: task })
         return response.data;
@@ -22,7 +22,7 @@ const addTaskService = async (task) => {
     }
 }
 
-const updateTaskService = async (task) => {
+const updateTaskService = async (task: any) => {
     try {
         const response = await axios.put(`${API_URL}/${task._id}`, { task: task.task, isDone: task.isDone })
         return response.data;
@@ -32,7 +32,7 @@ const updateTaskService = async (task) => {
     }
 }
 
-const updateStatusService = async (task) => {
+const updateStatusService = async (task: any) => {
     try {
         const response = await axios.put(`${API_URL}/${task._id}`, { ...task, isDone: !task.isDone })
         return response.data;
@@ -42,7 +42,7 @@ const updateStatusService = async (task) => {
     }
 }
 
-const deleteTaskService = async (id) => {
+const deleteTaskService = async (id: string) => {
     try {
         const response = await axios.delete(`${API_URL}/${id}`);
         return response.data;

@@ -2,16 +2,17 @@ import React, { useContext, useState, useRef, useEffect } from 'react'
 import { FaRegCircle, FaSave } from "react-icons/fa"
 import { FaCircleCheck } from "react-icons/fa6"
 import { RiDeleteBin5Fill } from "react-icons/ri"
-import { TaskContext } from '../contexts/TaskContext'
+import { useTaskContext } from '../contexts/TaskContext'
 import { MdEdit } from "react-icons/md"
 import { updateTaskService, deleteTaskService, updateStatusService } from '../services/taskService'
+import { ITask, ITaskList } from './constants/types'
 
 
-const TaskList = ({ task, getTasks }) => {
-    const { setIsLoading } = useContext(TaskContext)
+const TaskList: React.FC<ITaskList> = ({ task, getTasks }) => {
+    const { setIsLoading } = useTaskContext()
     const [isEditing, setEditing] = useState(false)
     const [tempText, setTempText] = useState(task.task)
-    const inputRef = useRef(null)
+    const inputRef = useRef<HTMLInputElement>(null)
 
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const TaskList = ({ task, getTasks }) => {
         }
     }, [isEditing])
 
-    const editTask = async (task) => {
+    const editTask = async (task: ITask) => {
         setIsLoading(true)
         try {
             await updateTaskService(task)
@@ -33,7 +34,7 @@ const TaskList = ({ task, getTasks }) => {
 
     }
 
-    const editStatusTask = async (task) => {
+    const editStatusTask = async (task: ITask) => {
         setIsLoading(true)
         try {
             await updateStatusService(task)
@@ -46,7 +47,7 @@ const TaskList = ({ task, getTasks }) => {
 
     }
 
-    const deleteTask = async (id) => {
+    const deleteTask = async (id: string) => {
         setIsLoading(true)
         try {
             await deleteTaskService(id)
@@ -59,7 +60,7 @@ const TaskList = ({ task, getTasks }) => {
 
     }
 
-    const clickEditTask = async (task) => {
+    const clickEditTask = async (task: ITask) => {
         setEditing(!isEditing)
         if (!isEditing) return
         const newTask = {
@@ -73,7 +74,7 @@ const TaskList = ({ task, getTasks }) => {
     return (
         <div>
             <ul>
-                <li key={task._id} className="flex items-center justify-between py-2 my-1 text-white bg-gray-800 ">
+                <li key={task._id} className="flex items-center justify-between py-2 my-1 text-white bg-custom-gray ">
                     <button onClick={() => editStatusTask(task)} disabled={isEditing} className="flex items-center w-full">
                         {task.isDone ? (
                             <FaCircleCheck size={20} className="mr-2 ml-4 text-gray-500" />

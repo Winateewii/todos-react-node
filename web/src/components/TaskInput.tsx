@@ -1,10 +1,15 @@
 import React, { useContext } from 'react'
 import { addTaskService } from '../services/taskService'
-import { TaskContext } from '../contexts/TaskContext'
+import { useTaskContext } from '../contexts/TaskContext'
 
-const TaskInput = ({ getTasks }) => {
 
-  const { task, setTask, setIsLoading } = useContext(TaskContext)
+interface TaskProps {
+  getTasks: () => void
+}
+
+const TaskInput: React.FC<TaskProps> = ({ getTasks }) => {
+
+  const { task, setTask, setIsLoading } = useTaskContext()
 
   const handleAddTask = async () => {
     setIsLoading(true)
@@ -23,7 +28,7 @@ const TaskInput = ({ getTasks }) => {
 
   }
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleAddTask()
     }
@@ -40,7 +45,7 @@ const TaskInput = ({ getTasks }) => {
         value={task}
         onChange={(e) => setTask(e.target.value)}
         onKeyDown={handleKeyDown}
-        className="w-full block bg-gray-800 text-white pl-36 py-2 px-4 pr-10 focus:outline-none focus:ring-2 focus:ring-gray-500"
+        className="w-full block bg-custom-gray text-white pl-36 py-2 px-4 pr-10 focus:outline-none focus:ring-2 focus:ring-gray-500"
       />
       <span
         className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400"
