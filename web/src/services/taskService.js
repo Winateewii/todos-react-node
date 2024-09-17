@@ -10,7 +10,7 @@ const getTasksService = async () => {
         console.error('Error fetching tasks', error)
         throw error
     }
-};
+}
 
 const addTaskService = async (task) => {
     try {
@@ -20,17 +20,27 @@ const addTaskService = async (task) => {
         console.error('Error adding task', error);
         throw error;
     }
-};
+}
 
 const updateTaskService = async (task) => {
     try {
-        const response = await axios.put(`${API_URL}/${task._id}`, { task: task.task, isDone: !task.isDone })
+        const response = await axios.put(`${API_URL}/${task._id}`, { task: task.task, isDone: task.isDone })
         return response.data;
     } catch (error) {
         console.error('Error updating task', error)
         throw error;
     }
-};
+}
+
+const updateStatusService = async (task) => {
+    try {
+        const response = await axios.put(`${API_URL}/${task._id}`, { ...task, isDone: !task.isDone })
+        return response.data;
+    } catch (error) {
+        console.error('Error updating task', error)
+        throw error;
+    }
+}
 
 const deleteTaskService = async (id) => {
     try {
@@ -40,11 +50,12 @@ const deleteTaskService = async (id) => {
         console.error('Error deleting task', error);
         throw error;
     }
-};
+}
 
 export {
     getTasksService,
     addTaskService,
     updateTaskService,
+    updateStatusService,
     deleteTaskService
 }

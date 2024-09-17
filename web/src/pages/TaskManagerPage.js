@@ -7,7 +7,7 @@ import Loading from '../components/utils/Loading'
 
 
 const TaskManager = () => {
-    const { setTasks, isLoading } = useContext(TaskContext)
+    const { tasks, setTasks, isLoading } = useContext(TaskContext)
 
     useEffect(() => {
         fetchTasks()
@@ -27,7 +27,10 @@ const TaskManager = () => {
         <div className="max-w-xl">
             <h1 className="text-2xl font-bold mb-4 text-center text-white">📝 My tasks</h1>
             <TaskInput getTasks={fetchTasks} />
-            <TaskList getTasks={fetchTasks} />
+            <h2 className="font-semibold my-2 mb-2 text-white text-center">To do</h2>
+            {tasks.map((task, index) => (
+                <TaskList key={index} index={index} task={task} getTasks={fetchTasks} />
+            ))}
             {isLoading && (
                 <Loading />
             )}
