@@ -4,7 +4,7 @@ import { FaCircleCheck } from "react-icons/fa6"
 import { RiDeleteBin5Fill } from "react-icons/ri"
 import { TaskContext } from '../contexts/TaskContext'
 import { MdEdit } from "react-icons/md"
-import { updateTaskService } from '../services/taskService'
+import { updateTaskService, deleteTaskService } from '../services/taskService'
 
 
 const TaskList = ({ getTasks }) => {
@@ -14,6 +14,19 @@ const TaskList = ({ getTasks }) => {
         setIsLoading(true)
         try {
             await updateTaskService(task)
+        } catch (error) {
+            console.error('API call failed', error);
+        } finally {
+            await getTasks()
+            setIsLoading(false)
+        }
+
+    }
+
+    const deleteTask = async (id) => {
+        setIsLoading(true)
+        try {
+            await deleteTaskService(id)
         } catch (error) {
             console.error('API call failed', error);
         } finally {
@@ -40,7 +53,7 @@ const TaskList = ({ getTasks }) => {
                             </span>
                         </button>
                         {task.isDone ? (
-                            <button className="text-red-500 mr-4 hover:text-red-900">
+                            <button className="text-red-500 mr-4 hover:text-red-900" onClick={() => deleteTask(task._id)}>
                                 <RiDeleteBin5Fill size={20} />
                             </button>
                         ) : (
