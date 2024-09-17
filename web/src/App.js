@@ -4,6 +4,8 @@ import NotFoundPage from './pages/NotFoundPage'
 import { TaskProvider } from './contexts/TaskContext'
 
 function App() {
+
+
   return (
     <TaskProvider>
       <Router >

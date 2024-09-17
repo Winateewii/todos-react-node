@@ -3,18 +3,24 @@ import { addTaskService } from '../services/taskService'
 import { TaskContext } from '../contexts/TaskContext'
 
 const TaskInput = ({ getTasks }) => {
-  // const [task, setTask] = useState('')
-  const { task, setTask } = useContext(TaskContext)
 
-  const handleAddTask = () => {
-    if (task.trim()) {
-      addTaskService(task).then(
-        getTasks()
-      )
-      setTask(task)
-      console.log('task--->', task)
-      setTask('')
+  const { task, setTask, setIsLoading } = useContext(TaskContext)
+
+  const handleAddTask = async () => {
+    setIsLoading(true)
+    try {
+      if (task.trim()) {
+        await addTaskService(task)
+        setTask('')
+      }
+    } catch (error) {
+      console.error('API call failed', error);
+    } finally {
+      await getTasks()
+      setIsLoading(false)
     }
+
+
   }
 
   const handleKeyDown = (e) => {

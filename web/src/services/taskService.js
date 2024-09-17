@@ -22,12 +22,12 @@ const addTaskService = async (task) => {
     }
 };
 
-const updateTaskService = async (id, updatedTask) => {
+const updateTaskService = async (task) => {
     try {
-        const response = await axios.put(`${API_URL}/${id}`, { task: updatedTask });
+        const response = await axios.put(`${API_URL}/${task._id}`, { task: task.task, isDone: !task.isDone })
         return response.data;
     } catch (error) {
-        console.error('Error updating task', error);
+        console.error('Error updating task', error)
         throw error;
     }
 };
