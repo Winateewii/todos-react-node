@@ -1,12 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
-import TaskManager from './components/TaskManager';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import TaskManagerPage from './pages/TaskManagerPage'
+import NotFoundPage from './pages/NotFoundPage'
+import { TaskProvider } from './contexts/TaskContext'
 
 function App() {
   return (
-    <div className="min-h-screen min-w-screen bg-gray-900 items-center flex justify-center">
-      <TaskManager />
-    </div>
+    <TaskProvider>
+      <Router >
+        <div className="min-h-screen bg-gray-900 items-center flex w-full justify-center">
+          <Routes>
+            <Route path="/" element={<TaskManagerPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </div>
+      </Router >
+    </TaskProvider>
+
   );
 }
 

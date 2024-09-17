@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react'
+import { addTaskService } from '../services/taskService'
+import { TaskContext } from '../contexts/TaskContext'
 
-const TaskInput = ({ addTask }) => {
-  const [task, setTask] = useState('');
+const TaskInput = ({ getTasks }) => {
+  // const [task, setTask] = useState('')
+  const { task, setTask } = useContext(TaskContext)
 
   const handleAddTask = () => {
     if (task.trim()) {
-      addTask(task)
+      addTaskService(task).then(
+        getTasks()
+      )
+      setTask(task)
       console.log('task--->', task)
-      setTask('') 
+      setTask('')
     }
   }
 
