@@ -7,10 +7,17 @@ import Loading from '../components/utils/Loading'
 
 
 const TaskManager = () => {
-    const { tasks, setTasks, isLoading } = useTaskContext()
+    const { tasks, setTasks, isLoading, setIsLoading } = useTaskContext()
 
     useEffect(() => {
-        fetchTasks()
+        setIsLoading(true)
+        try {
+            fetchTasks()
+        } catch (error) {
+            console.error('API call failed', error)
+        } finally {
+            setIsLoading(false)
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
