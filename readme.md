@@ -94,10 +94,12 @@ cd api
 Example `.env` file:
 ```
 PORT=8080
-MONGODB_URI=mongodb://localhost:27017/todo-app
+MONGODB_URI=**********
 ```
+**_NOTE:_** MONGODB_URI contains critical information so I will provide this separately
 
-3. Start the backend server:
+
+1. Start the backend server:
 
 ```bash
 npm run dev
