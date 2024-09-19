@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import TaskInput from '../components/TaskInput'
 import TaskList from '../components/TaskList'
 import { getTasksService } from '../services/taskService'
@@ -11,6 +11,7 @@ const TaskManager = () => {
 
     useEffect(() => {
         fetchTasks()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const fetchTasks = async () => {

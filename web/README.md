@@ -1,70 +1,231 @@
-# Getting Started with Create React App
+# Todo Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a full-stack Todo application built using **React** with **Tailwind CSS** for the frontend, **Node.js** with **Express** for the backend, and **MongoDB** for the database. It includes Swagger for API documentation.
 
-## Available Scripts
+![image](https://ucarecdn.com/3cf6c9ba-a6f3-40a5-b994-74c59b82cde8/-/preview/673x447/)
 
-In the project directory, you can run:
+## Project Overview
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Node.js, Express
+- **Database**: MongoDB
+- **API Documentation**: Swagger
 
-### `npm start`
+## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [Installation](#installation)
+3. [Running the Frontend](#running-the-frontend)
+4. [Running the Backend](#running-the-backend)
+5. [API Documentation with Swagger](#api-documentation-with-swagger)
+6. [Testing](#testing)
+7. [Todo Application Development Stories](#Todo-Application-Development-Stories)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
 
-### `npm test`
+Make sure you have the following installed:
+- **Node.js** (v18+)
+- **npm** (v8+)
+- **Git**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Step 1: Clone the repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/Winateewii/todos-react-node
+cd todos-react-node
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Step 2: Install dependencies
 
-### `npm run eject`
+#### Frontend dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Navigate to the frontend folder and install the required packages:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+cd web
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### Backend dependencies
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+In a separate terminal, navigate to the backend folder and install the required packages:
 
-## Learn More
+```bash
+cd ../api
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Running the Frontend
 
-### Code Splitting
+1. Navigate to the `frontend` directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+cd web
+```
 
-### Analyzing the Bundle Size
+2. Start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm start
+```
 
-### Making a Progressive Web App
+3. Open [http://localhost:3000](http://localhost:3000) to view the app in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The frontend will start on port **3000**.
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Running the Backend
 
-### Deployment
+1. Navigate to the `backend` directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+cd api
+```
 
-### `npm run build` fails to minify
+2. Create an `.env` file in the `backend` directory and add your environment variables (e.g., MongoDB URI).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Example `.env` file:
+```
+PORT=8080
+MONGODB_URI=mongodb://localhost:27017/todo-app
+```
+
+3. Start the backend server:
+
+```bash
+npm run dev
+```
+
+4. The backend will be running on [http://localhost:8080](http://localhost:8080).
+
+---
+
+
+## API Documentation with Swagger
+
+1. After starting the backend, you can access the API documentation generated by Swagger at:
+
+[http://localhost:8080/api-docs](http://localhost:8080/api-docs)
+
+---
+
+## Testing
+
+You can run tests for the frontend and backend as follows:
+
+### Frontend Tests
+1. Navigate to the `frontend` directory.
+2. Run the tests using:
+
+```bash
+npm test
+```
+
+### Test Cases
+
+1. **Render the Component**
+   - **Description:** Ensures that the `TaskManagerPage` component renders without crashing.
+ 
+
+2. **Add a New Task**
+   - **Description:** Validates that a new task can be successfully added to the task list.
+   
+
+3. **Edit an Existing Task**
+   - **Description:** Checks that an existing task can be edited and the changes can be saved.
+   
+
+4. **Toggle Task Status**
+   - **Description:** Verifies that a task can be marked as done and then undone.
+
+
+5. **Delete a Task**
+   - **Description:** Ensures that a task can be deleted from the task list.
+
+### Test Results
+![image](https://ucarecdn.com/9e7a9f03-3004-4840-99f4-9a722e4d3d05/-/preview/786x347/)
+
+---
+## Todo Application Development Stories
+
+Here's a breakdown of the problem statement into small user stories for the development of a Todo application 
+
+
+
+#### User Story 1: Create the Basic UI for Task Input and List Display
+- **Description:** Develop the basic user interface to display the "My tasks" header, an input field to add a new task, and a list section for tasks that the user inputs.
+- **Tasks:**
+  - Create a **React** component for the task input field.
+  - Implement a simple **text input** where users can type a task.
+  - Design a task list section using **Tailwind CSS** to display tasks.
+  - Add a "Add a task" placeholder with a suggestion like "Try typing 'Buy milk'".
+
+#### User Story 2: Implement Task Addition Feature (Frontend)
+- **Description:** Allow users to add tasks via the input field, which will be displayed in the list below once added.
+- **Tasks:**
+  - Create a function to handle **new task submission**.
+  - Update the state to reflect **added tasks** and show them in the list.
+  - Use **React hooks** like `useState` to manage the list of tasks.
+  
+#### User Story 3: Backend API to Add Tasks (Node.js + MongoDB)
+- **Description:** Create a backend API that will allow adding tasks to a MongoDB database.
+- **Tasks:**
+  - Set up **Express.js** backend with a POST endpoint to **add new tasks**.
+  - Create a **MongoDB schema** for tasks.
+  - Store added tasks in the **MongoDB database**.
+  - Connect **Frontend** to **Backend** using **Axios** for task submission.
+
+#### User Story 4: Display Tasks from Backend (Frontend)
+- **Description:** Fetch the task list from the backend and display it on the frontend upon page load.
+- **Tasks:**
+  - Add a GET endpoint in the **backend** to retrieve all tasks.
+  - Fetch tasks using **Axios** on the **frontend** and store them in **state**.
+  - Render the tasks in the list on the UI.
+
+#### User Story 5: Implement Task Editing Feature (Frontend)
+- **Description:** Add an edit button next to each task that allows users to modify the task.
+- **Tasks:**
+  - Implement an **edit button** (as shown in the UI).
+  - Upon clicking the edit button, allow the user to change the task.
+
+#### User Story 6: Backend API for Editing Tasks (Node.js + MongoDB)
+- **Description:** Create a backend API to handle task updates when users edit a task.
+- **Tasks:**
+  - Create an **Express PUT endpoint** to handle task updates.
+  - Write code to update the task in **MongoDB**.
+  - Connect the frontend to this **PUT API** to ensure that updates persist in the database.
+
+#### User Story 7: Implement Task Deletion Feature
+- **Description:** Allow users to delete tasks from the list.
+- **Tasks:**
+  - Add a **delete button** (or icon) for each task(The delete icon should show after task done).
+  - Handle the click event to remove the task from the frontend state.
+  - Create a **DELETE API endpoint** on the backend.
+  - Remove the task from the **MongoDB** database.
+
+#### User Story 8: Improve Task UI (Styling with Tailwind CSS)
+- **Description:** Make the task list visually appealing by improving the design and layout using **Tailwind CSS**.
+- **Tasks:**
+  - Add spacing, borders, or backgrounds to make tasks easily distinguishable.
+  - Style the input field and task list using **Tailwind** utilities for a clean look.
+  
+#### User Story 9: Add Loading State for Task Fetching (Frontend)
+- **Description:** Show a loading state while tasks are being fetched from the backend.
+- **Tasks:**
+  - Implement a **loading spinner** or indicator using **React** state.
+  - Show the loader when tasks are being fetched and hide it after the tasks are loaded.
+
+#### User Story 10: Setup Swagger for Backend API Documentation
+- **Description:** Integrate **Swagger** into the backend to document the APIs for adding, fetching, updating, and deleting tasks.
+- **Tasks:**
+  - Add **Swagger** setup in the **Express.js** backend.
+  - Document each API endpoint.
+
+---

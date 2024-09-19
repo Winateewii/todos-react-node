@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { FaRegCircle, FaSave } from "react-icons/fa"
 import { FaCircleCheck } from "react-icons/fa6"
 import { RiDeleteBin5Fill } from "react-icons/ri"
@@ -97,11 +97,11 @@ const TaskList: React.FC<ITaskList> = ({ task, getTasks }) => {
 
                     </button>
                     {task.isDone ? (
-                        <button className="text-red-500 ml-4 mr-4 hover:text-red-900" onClick={() => deleteTask(task._id)}>
+                        <button className="text-red-500 ml-4 mr-4 hover:text-red-900" data-testid={`delete-icon-${task.task}`} onClick={() => deleteTask(task._id)}>
                             <RiDeleteBin5Fill size={20} />
                         </button>
                     ) : (
-                        <button className="text-gray-500 ml-4 mr-4 hover:text-white" onClick={() => clickEditTask(task)}>
+                        <button className="text-gray-500 ml-4 mr-4 hover:text-white" data-testid={`edit-icon-${task.task}`} onClick={() => clickEditTask(task)}>
                             {isEditing ? (
                                 <FaSave size={20} />
                             ) : (
