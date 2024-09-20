@@ -10,14 +10,21 @@ const TaskManager = () => {
     const { tasks, setTasks, isLoading, setIsLoading } = useTaskContext()
 
     useEffect(() => {
-        setIsLoading(true)
-        try {
-            fetchTasks()
-        } catch (error) {
-            console.error('API call failed', error)
-        } finally {
-            setIsLoading(false)
+
+        const fetchTasks = async () => {
+            try {
+                setIsLoading(true)
+                const fetchedTasks = await getTasksService()
+                setTasks(fetchedTasks);
+            } catch (error) {
+                console.error('Error fetching tasks:', error)
+            } finally {
+                setIsLoading(false)
+            }
         }
+
+        fetchTasks()
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
